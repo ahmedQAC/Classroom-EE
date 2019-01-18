@@ -4,13 +4,15 @@ import javax.enterprise.inject.Default;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 import static javax.transaction.Transactional.TxType.*;
+
+import java.util.Collection;
 
 import javax.transaction.Transactional;
 
 import com.qa.domain.Classroom;
-import com.qa.domain.Trainee;
 import com.qa.util.JSONUtil;
 
 
@@ -23,6 +25,12 @@ public class ClassroomDBRepository implements ClassroomRepository {
 	
 	@Inject
 	private JSONUtil util;
+	
+	public String getAllClassrooms() {
+		Query query = manager.createQuery("Select a FROM Classroom a");
+		Collection<Classroom> classrooms = (Collection<Classroom>) query.getResultList();
+		return util.getJSONForObject(classrooms);
+	}
 
 	public Classroom findAClassroom(Long classroomID) {
 		return manager.find(Classroom.class, classroomID);

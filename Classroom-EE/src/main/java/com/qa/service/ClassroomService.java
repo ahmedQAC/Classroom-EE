@@ -1,9 +1,8 @@
-package com.qa.repository;
+package com.qa.service;
 
 import com.qa.domain.Classroom;
-import com.qa.domain.Trainee;
 
-public interface ClassroomRepository {
+public interface ClassroomService {
 
 	String getAllClassrooms();
 	

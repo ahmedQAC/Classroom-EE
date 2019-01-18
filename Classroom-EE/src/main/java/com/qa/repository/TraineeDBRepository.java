@@ -2,9 +2,13 @@ package com.qa.repository;
 
 import javax.enterprise.inject.Default;
 import static javax.transaction.Transactional.TxType.*;
+
+import java.util.Collection;
+
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.transaction.Transactional;
 
 import com.qa.domain.Trainee;
@@ -20,6 +24,11 @@ public class TraineeDBRepository implements TraineeRepository {
 	@Inject
 	private JSONUtil util;
 	
+	public String getAllTrainees() {
+		Query query = manager.createQuery("Select a FROM Trainee a");
+		Collection<Trainee> trainees = (Collection<Trainee>) query.getResultList();
+		return util.getJSONForObject(trainees);
+	}
 	
 	public Trainee findATrainee(Long traineeID) {
 		return manager.find(Trainee.class, traineeID);
@@ -54,5 +63,6 @@ public class TraineeDBRepository implements TraineeRepository {
 		}
 		return output;
 	}
+
 
 }

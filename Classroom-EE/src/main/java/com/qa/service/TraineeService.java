@@ -1,9 +1,9 @@
-package com.qa.repository;
+package com.qa.service;
 
 import com.qa.domain.Trainee;
 
-public interface TraineeRepository {
-	
+public interface TraineeService {
+
 	String getAllTrainees();
 	
 	Trainee findATrainee(Long traineeID);
