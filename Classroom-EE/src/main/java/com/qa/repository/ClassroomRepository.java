@@ -5,6 +5,7 @@ import com.qa.domain.Trainee;
 
 public interface ClassroomRepository {
 
+	String getAllClassrooms();
 	
 	Classroom findAClassroom(Long classroomID);
 	
