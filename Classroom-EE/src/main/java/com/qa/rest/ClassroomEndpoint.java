@@ -8,7 +8,6 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 
-import com.qa.domain.Classroom;
 import com.qa.service.ClassroomService;
 
 @Path("/classroom")
@@ -31,17 +30,17 @@ public class ClassroomEndpoint {
 		return service.createAClassroom(classroom);
 	}
 	
-	@Path("/deleteAClassroom")
+	@Path("/deleteAClassroom/{classroomID}")
 	@DELETE
 	@Produces({ "application/json" })
 	public String deleteAClassroom(@PathParam("classroomID") Long classroomID) {
 		return service.deleteClassroom(classroomID);
 	}
 	
-	@Path("/updateAClassroom")
-	@GET
+	@Path("/updateAClassroom/{classroomID}")
+	@POST
 	@Produces({ "application/json" })
-	public String UpdateACLassroom (Long classroomID, String classroom) {
+	public String UpdateACLassroom (@PathParam("classroomID") Long classroomID, String classroom) {
 		return service.updateAClasstroom(classroomID, classroom);
 	}
 	

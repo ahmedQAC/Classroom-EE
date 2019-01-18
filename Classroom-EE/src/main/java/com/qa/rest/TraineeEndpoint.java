@@ -8,7 +8,6 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 
-import com.qa.domain.Trainee;
 import com.qa.service.TraineeService;
 
 @Path("/trainee")
@@ -31,24 +30,17 @@ public class TraineeEndpoint {
 		return service.createATrainee(trainee);
 	}
 	
-	@Path("/deleteTrainee")
+	@Path("/deleteTrainee/{traineID}")
 	@DELETE
 	@Produces({ "application/json" })
 	public String deleteTrainee(@PathParam("traineeID") Long traineeID) {
 		return service.deleteTrainee(traineeID);
 	}
 	
-//	@Path("/findATrainee")
-//	@GET
-//	@Produces({ "application/json" })
-//	public Trainee findATrainee(Long traineeID) {
-//		return service.findATrainee(traineeID);
-//	}
-	
-	@Path("/updateATrainee")
+	@Path("/updateATrainee/{traineeID}")
 	@POST
 	@Produces({ "application/json" })
-	public String updateATrainee(Long traineeID, String trainee) {
+	public String updateATrainee(@PathParam("traineeID") Long traineeID, String trainee) {
 		return service.updateATrainee(traineeID, trainee);
 	}
 	
